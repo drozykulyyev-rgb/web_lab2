@@ -1,0 +1,7 @@
+build/
+logs/
+run/
+config/helios.ports
+*.log
+*.pid
+.DS_Store

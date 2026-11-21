@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Лабораторная работа №2</title>
+        <link rel="stylesheet" href="lab2.css">
+        <script src="lab2.js" defer></script>
+    </head>
+    <body>
+        <header>
+            <h1>Лабораторная работа №2</h1>
+            <p>Розыкулыев Дидар | Группа P3231 | Вариант 7745196</p>
+        </header>
+        <main>
+            <table class="main-table" role="presentation">
+                <tbody>
+                    <tr>
+                        <td>
+                            <h2>Координатная плоскость</h2>
+                            <canvas id="graph" width="500" height="500" role="img" aria-label="Область: четверть круга во второй четверти, прямоугольник в первой и треугольник в третьей."></canvas>
+                            <p class="hint">На графике — точки последней проверки. Зелёная точка — внутри области, красная — снаружи. История хранится в таблице.</p>
+                        </td>
+                        <td>
+                            <h2>Введите координаты</h2>
+                            <form id="point-form" action="api/check" method="get" novalidate>
+                                <fieldset id="inputs">
+                                    <fieldset aria-describedby="x-error">
+                                        <legend>X (можно выбрать несколько):</legend>
+                                        <div class="x-values">
+                                            <label><input type="checkbox" name="x" value="-5">−5</label>
+                                            <label><input type="checkbox" name="x" value="-4">−4</label>
+                                            <label><input type="checkbox" name="x" value="-3">−3</label>
+                                            <label><input type="checkbox" name="x" value="-2">−2</label>
+                                            <label><input type="checkbox" name="x" value="-1">−1</label>
+                                            <label><input type="checkbox" name="x" value="0" checked>0</label>
+                                            <label><input type="checkbox" name="x" value="1">1</label>
+                                            <label><input type="checkbox" name="x" value="2">2</label>
+                                            <label><input type="checkbox" name="x" value="3">3</label>
+                                        </div>
+                                    </fieldset>
+                                    <div class="error" id="x-error" aria-live="polite"></div>
+                                    <label for="y">Y (−3 &lt; Y &lt; 5):</label>
+                                    <input type="text" id="y" name="y" inputmode="decimal" placeholder="Например, 1,5" maxlength="64" aria-describedby="y-error" required>
+                                    <div class="error" id="y-error" aria-live="polite"></div>
+                                    <label for="r">Радиус R:</label>
+                                    <select id="r" name="r" aria-describedby="r-error">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                    </select>
+                                    <div class="error" id="r-error" aria-live="polite"></div>
+                                    <button type="submit">Проверить</button>
+                                </fieldset>
+                            </form>
+                            <p id="status" role="status">Загрузка истории…</p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <h2>Результаты</h2>
+            <button type="button" id="clear">Очистить таблицу</button>
+            <div class="table-scroll">
+                <table class="result-table">
+                    <thead>
+                        <tr>
+                            <th scope="col">X</th>
+                            <th scope="col">Y</th>
+                            <th scope="col">R</th>
+                            <th scope="col">Результат</th>
+                            <th scope="col">Дата и время сервера</th>
+                            <th scope="col">Время обработки, мс</th>
+                        </tr>
+                    </thead>
+                    <tbody id="results">
+                        <tr>
+                            <td colspan="6">Проверок пока нет</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <noscript>Для отправки запросов и отображения графика включите JavaScript.</noscript>
+        </main>
+    </body>
+</html>
